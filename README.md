@@ -62,6 +62,18 @@ docker run -p 8080:8080 shipflow-ci
 
 The application will be accessible at `http://localhost:8080`.
 
+## Continuous Integration
+
+This project uses **GitHub Actions** for automated verification.
+
+The CI pipeline (`.github/workflows/ci.yml`) automatically runs on every push and pull request to ensure that:
+1. The code compiles successfully.
+2. All tests pass.
+3. The project can be packaged into a JAR.
+4. The Docker image builds correctly.
+
+This automated process provides immediate feedback and ensures that the application remains stable as new features are added.
+
 ### Verify in Docker
 
 To verify the health endpoint is working inside the container:
