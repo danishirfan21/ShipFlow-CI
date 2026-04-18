@@ -44,8 +44,24 @@ public class MessageControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"text\": \"Message 1\"}"));
 
+        mockMvc.perform(post("/messages")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"text\": \"Message 2\"}"));
+
         mockMvc.perform(get("/messages"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].text").value("Message 1"));
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].text").value("Message 1"))
+                .andExpect(jsonPath("$[1].text").value("Message 2"));
+    }
+
+    @Test
+    public void testCreateMessageWithBlankTextReturnsBadRequest() throws Exception {
+        String invalidJson = "{\"text\": \"\"}";
+
+        mockMvc.perform(post("/messages")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(invalidJson))
+                .andExpect(status().isBadRequest());
     }
 }

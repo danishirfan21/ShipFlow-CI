@@ -1,5 +1,6 @@
 package com.shipflow;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class MessageController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createMessage(@RequestBody MessageRequest request) {
+    public void createMessage(@Valid @RequestBody MessageRequest request) {
         messageService.addMessage(request.getText());
     }
 
