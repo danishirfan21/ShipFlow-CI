@@ -43,3 +43,29 @@ mvn spring-boot:run
 ```
 
 The API will be available at `http://localhost:8080`.
+
+## Docker
+
+You can also build and run the application using Docker.
+
+### Build the Image
+
+```bash
+docker build -t shipflow-ci .
+```
+
+### Run the Container
+
+```bash
+docker run -p 8080:8080 shipflow-ci
+```
+
+The application will be accessible at `http://localhost:8080`.
+
+### Verify in Docker
+
+To verify the health endpoint is working inside the container:
+
+```bash
+curl http://localhost:8080/health
+```
