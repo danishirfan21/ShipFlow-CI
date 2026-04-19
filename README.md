@@ -1,6 +1,6 @@
 # ShipFlow CI
 
-ShipFlow CI is a production-ready Spring Boot microservice foundation designed to demonstrate a complete CI/CD lifecycle, containerization, and automated deployment. It provides a clean, validated REST API for message management, backed by a robust automated verification pipeline.
+ShipFlow CI is a deployment-ready Spring Boot API designed to demonstrate a complete CI/CD lifecycle, containerization, and automated deployment. It provides a clean, validated REST API for message management, supported by an automated verification pipeline.
 
 ## Overview
 
@@ -85,13 +85,10 @@ mvn test
 1. **Development**: Feature branch creation and local testing.
 2. **Validation**: GitHub Actions runs the CI suite on pull request.
 3. **Packaging**: Docker builds a production-ready image.
-4. **Deployment**: Successful merges to `main` trigger an automated rollout to Render.
+4. **Deployment**: Once the repository is connected to Render, merges to `main` can trigger an automated rollout.
 
 ## Future Improvements
 
 - Implementation of a persistent database (e.g., PostgreSQL).
 - Integration of API documentation (Swagger/OpenAPI).
 - Enhanced observability with Spring Boot Actuator and Prometheus.
-
----
-*This project serves as a foundational template for engineering teams looking to standardize their Spring Boot deployment pipelines.*
