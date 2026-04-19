@@ -81,3 +81,33 @@ To verify the health endpoint is working inside the container:
 ```bash
 curl http://localhost:8080/health
 ```
+
+## Deployment
+
+This project is configured for deployment on **Render**.
+
+### Deployment Setup
+
+The deployment is managed by the `render.yaml` Blueprint file, which defines:
+- **Service Type**: Web Service
+- **Runtime**: Java
+- **Build Command**: `mvn clean package -DskipTests`
+- **Start Command**: `java -jar target/shipflow-0.0.1-SNAPSHOT.jar --server.port=${PORT:-8080}`
+
+Render automatically detects the `render.yaml` file at the root of the repository and configures the service accordingly.
+
+### Continuous Deployment
+
+Once the GitHub repository is connected to Render:
+1. Every push to the main branch triggers a build on Render.
+2. Render uses the specified build command to package the application.
+3. The application is deployed as a live service and bound to the platform-provided port.
+
+### End-to-End Workflow
+
+This project demonstrates a complete development lifecycle:
+1. **App Code**: Spring Boot REST API with in-memory storage.
+2. **Tests**: Unit and integration tests for all endpoints.
+3. **Docker**: Multi-stage `Dockerfile` for local containerization and consistent environments.
+4. **CI**: GitHub Actions workflow to verify every change.
+5. **Deployment**: Deployment-ready configuration for Render to host the live service.
